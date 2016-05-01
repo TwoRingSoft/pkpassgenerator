@@ -13,6 +13,8 @@ Once you've done that, follow these steps to generate a pass:
 
 This will check the sizes of the images you provided, copy them along with `pass.json` into a directory called `$PASS_NAME.pkpass`, and run `signpass` on it. If everything goes ok, a pass should appear on your screen.
 
+`signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included here to complete the signing process.
+
 ## Hosting
 
 As the tutorials linked below will note, if you'd like to host your pass from a website, there are some special considerations. This comes in handy if you like people to get your pass by scanning a barcode on it.
