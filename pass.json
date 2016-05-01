@@ -15,7 +15,7 @@
     "backgroundColor": "rgb(<#red#>, <#green#>, <#blue#>)",
     "generic": {
         "primaryFields": [{
-                          "key": "firstname",
+                          "key": "fullname",
                           "label": "NAME",
                           "value": "<#your name. if it gets truncated next to an image, you can put in a ‘\n’#>"
                           }],
