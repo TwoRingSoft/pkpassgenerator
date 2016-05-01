@@ -32,18 +32,6 @@
                        "key": "emailBack",
                        "label": "EMAIL",
                        "value": "<#email address#>"
-                       }, {
-                       "key": "twitterBack",
-                       "label": "TWITTER",
-                       "value": "<#twitter handle, or link to your twitter page#>"
-                       }, {
-                       "key": "githubBack",
-                       "label": "GITHUB",
-                       "value": "<#link to your github#>"
-                       }, {
-                       "key": "webBack",
-                       "label": "WEB",
-                       "value": "<#your webpage#>"
                        }]
     }
 }
