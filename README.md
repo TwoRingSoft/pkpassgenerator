@@ -17,6 +17,10 @@ This will check the sizes of the images you provided, copy them along with `pass
 
 ## Images
 
+**Note:** do *not* use transparency in your `icon` image. Transparent regions are drawn as black when the icon is displayed in shared through Messages, emails, etc.
+
+### Sizes
+
 There are various guidelines on sizes of images, which the project will check and provide warnings for any violations. The following websites were used as references for the values used:
 
 - [https://developer.apple.com/library/watchos/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html/apple_ref/doc/uid/TP40012195-CH4-SW52#//apple_ref/doc/uid/TP40012195-CH4-SW52](https://developer.apple.com/library/watchos/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html/apple_ref/doc/uid/TP40012195-CH4-SW52#//apple_ref/doc/uid/TP40012195-CH4-SW52)
