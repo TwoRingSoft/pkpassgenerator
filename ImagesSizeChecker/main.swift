@@ -230,17 +230,17 @@ func checkSizesInPass(pass: Pass) {
         if !(thumbnail.single.image.extent.size.width <= 90) { warnings.append("failed image size check: thumbnail.single.image.extent.size.width <= 90") }
         if !(thumbnail.single.image.extent.size.height <= 90) { warnings.append("failed image size check: thumbnail.single.image.extent.size.height <= 90") }
         let singleAspectRatio = thumbnail.single.image.extent.size.width / thumbnail.single.image.extent.size.height
-        if !(singleAspectRatio >= (3.0 / 2.0) && singleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @1x aspect ratio >= (3.0 / 2.0) && thumbnail @1x aspect ratio >= (2.0 / 3.0)") }
+        if !(singleAspectRatio <= (3.0 / 2.0) && singleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @1x aspect ratio >= (3.0 / 2.0) && thumbnail @1x aspect ratio >= (2.0 / 3.0)") }
 
         if !(thumbnail.double.image.extent.size.width <= 90 * 2) { warnings.append("failed image size check: thumbnail.double.image.extent.size.width <= 90 * 2") }
         if !(thumbnail.double.image.extent.size.height <= 90 * 2) { warnings.append("failed image size check: thumbnail.double.image.extent.size.height <= 90 * 2") }
         let doubleAspectRatio = thumbnail.double.image.extent.size.width / thumbnail.double.image.extent.size.height
-        if !(doubleAspectRatio >= (3.0 / 2.0) && doubleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @2x aspect ratio >= (3.0 / 2.0) && thumbnail @2x aspect ratio >= (2.0 / 3.0)") }
+        if !(doubleAspectRatio <= (3.0 / 2.0) && doubleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @2x aspect ratio >= (3.0 / 2.0) && thumbnail @2x aspect ratio >= (2.0 / 3.0)") }
 
         if !(thumbnail.triple.image.extent.size.width <= 90 * 3) { warnings.append("failed image size check: thumbnail.triple.image.extent.size.width <= 90 * 3") }
         if !(thumbnail.triple.image.extent.size.height <= 90 * 3) { warnings.append("failed image size check: thumbnail.triple.image.extent.size.height <= 90 * 3") }
         let tripleAspectRatio = thumbnail.triple.image.extent.size.width / thumbnail.triple.image.extent.size.height
-        if !(tripleAspectRatio >= (3.0 / 2.0) && tripleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @3x aspect ratio >= (3.0 / 2.0) && thumbnail @3x aspect ratio >= (2.0 / 3.0)") }
+        if !(tripleAspectRatio <= (3.0 / 2.0) && tripleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @3x aspect ratio >= (3.0 / 2.0) && thumbnail @3x aspect ratio >= (2.0 / 3.0)") }
     }
 
     if let strip = pass.images.strip {
