@@ -1,0 +1,49 @@
+{
+    "formatVersion": 1,
+    "passTypeIdentifier": "<#identifier from certificate#>",
+    "serialNumber": "<#serial number: any unique number for the above certificate#>",
+    "teamIdentifier": "<#team identifier#>",
+    "barcode": {
+        "message": "https://<#url hosting pass#>",
+        "format": "<#PKBarcodeFormatQR#><#PKBarcodeFormatPDF417#><#PKBarcodeFormatAztec#>",
+        "messageEncoding": "iso-8859-1"
+    },
+    "organizationName": "<#your organization's name#>",
+    "description": "<#description, e.g. “Such and such's Business Card”#>",
+    "logoText": "<#text to appear next to a logo, if provided; this appears at the top of the card in wallet, for picking it out of the list#>",
+    "foregroundColor": "rgb(<#red#>, <#green#>, <#blue#>)",
+    "backgroundColor": "rgb(<#red#>, <#green#>, <#blue#>)",
+    "generic": {
+        "primaryFields": [{
+                          "key": "firstname",
+                          "label": "NAME",
+                          "value": "<#your name. if it gets truncated next to an image, you can put in a ‘\n’#>"
+                          }],
+        "secondaryFields": [{
+                            "key": "title",
+                            "label": "TITLE",
+                            "value": "<#your title at your company#>"
+                            }],
+        "backFields": [{
+                       "key": "nameBack",
+                       "label": "NAME",
+                       "value": "<#name, title, etc#>"
+                       }, {
+                       "key": "emailBack",
+                       "label": "EMAIL",
+                       "value": "<#email address#>"
+                       }, {
+                       "key": "twitterBack",
+                       "label": "TWITTER",
+                       "value": "<#twitter handle, or link to your twitter page#>"
+                       }, {
+                       "key": "githubBack",
+                       "label": "GITHUB",
+                       "value": "<#link to your github#>"
+                       }, {
+                       "key": "webBack",
+                       "label": "WEB",
+                       "value": "<#your webpage#>"
+                       }]
+    }
+}

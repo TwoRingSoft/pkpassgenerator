@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		49FF3C391CD66F2A007804C4 /* Generate PKPass */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 49FF3C3A1CD66F2A007804C4 /* Build configuration list for PBXAggregateTarget "Generate PKPass" */;
+			buildPhases = (
+				4993FABC1CD6753800DF580C /* Check image sizes */,
+				49FF3C481CD66FEA007804C4 /* Create pass */,
+			);
+			dependencies = (
+				4993FABB1CD6752F00DF580C /* PBXTargetDependency */,
+				49FF3C441CD66F48007804C4 /* PBXTargetDependency */,
+			);
+			name = "Generate PKPass";
+			productName = "Generate PKPass";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		4993FAB61CD6752400DF580C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993FAB51CD6752400DF580C /* main.swift */; };
+		4993FABE1CD699E900DF580C /* Definitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993FABD1CD699E900DF580C /* Definitions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4993FABA1CD6752F00DF580C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49FF3C311CD66C22007804C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4993FAB11CD6752400DF580C;
+			remoteInfo = ImagesSizeChecker;
+		};
+		49FF3C411CD66F3F007804C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7218F2D51575996900726771;
+			remoteInfo = signpass;
+		};
+		49FF3C431CD66F48007804C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7218F2D41575996900726771;
+			remoteInfo = signpass;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4993FAB01CD6752400DF580C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4993FAB21CD6752400DF580C /* ImagesSizeChecker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ImagesSizeChecker; sourceTree = BUILT_PRODUCTS_DIR; };
+		4993FAB51CD6752400DF580C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4993FABD1CD699E900DF580C /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
+		49FF3C371CD66C31007804C4 /* pass_template.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pass_template.json; sourceTree = "<group>"; };
+		49FF3C381CD66E6A007804C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = signpass.xcodeproj; path = signpass/signpass.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4993FAAF1CD6752400DF580C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4993FAB31CD6752400DF580C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4993FAB21CD6752400DF580C /* ImagesSizeChecker */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4993FAB41CD6752400DF580C /* ImagesSizeChecker */ = {
+			isa = PBXGroup;
+			children = (
+				4993FAB51CD6752400DF580C /* main.swift */,
+				4993FABD1CD699E900DF580C /* Definitions.swift */,
+			);
+			path = ImagesSizeChecker;
+			sourceTree = "<group>";
+		};
+		49FF3C301CD66C22007804C4 = {
+			isa = PBXGroup;
+			children = (
+				49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */,
+				49FF3C381CD66E6A007804C4 /* Images.xcassets */,
+				49FF3C371CD66C31007804C4 /* pass_template.json */,
+				4993FAB41CD6752400DF580C /* ImagesSizeChecker */,
+				4993FAB31CD6752400DF580C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		49FF3C3E1CD66F3F007804C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				49FF3C421CD66F3F007804C4 /* signpass */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4993FAB11CD6752400DF580C /* ImagesSizeChecker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4993FAB71CD6752400DF580C /* Build configuration list for PBXNativeTarget "ImagesSizeChecker" */;
+			buildPhases = (
+				4993FAAE1CD6752400DF580C /* Sources */,
+				4993FAAF1CD6752400DF580C /* Frameworks */,
+				4993FAB01CD6752400DF580C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImagesSizeChecker;
+			productName = ImagesSizeChecker;
+			productReference = 4993FAB21CD6752400DF580C /* ImagesSizeChecker */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		49FF3C311CD66C22007804C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				TargetAttributes = {
+					4993FAB11CD6752400DF580C = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					49FF3C391CD66F2A007804C4 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 49FF3C341CD66C22007804C4 /* Build configuration list for PBXProject "PKPassGenerator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 49FF3C301CD66C22007804C4;
+			productRefGroup = 4993FAB31CD6752400DF580C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 49FF3C3E1CD66F3F007804C4 /* Products */;
+					ProjectRef = 49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				49FF3C391CD66F2A007804C4 /* Generate PKPass */,
+				4993FAB11CD6752400DF580C /* ImagesSizeChecker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		49FF3C421CD66F3F007804C4 /* signpass */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = signpass;
+			remoteRef = 49FF3C411CD66F3F007804C4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4993FABC1CD6753800DF580C /* Check image sizes */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check image sizes";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$BUILT_PRODUCTS_DIR/ImagesSizeChecker\" \\\n$PROJECT_DIR/pass.json \\\n$PROJECT_DIR/Images.xcassets/background.imageset \\\n$PROJECT_DIR/Images.xcassets/footer.imageset \\\n$PROJECT_DIR/Images.xcassets/icon.imageset \\\n$PROJECT_DIR/Images.xcassets/logo.imageset \\\n$PROJECT_DIR/Images.xcassets/strip.imageset \\\n$PROJECT_DIR/Images.xcassets/thumbnail.imageset";
+		};
+		49FF3C481CD66FEA007804C4 /* Create pass */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create pass";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copy resources into directory\nPASS_DIR=\"$PROJECT_DIR/$PASS_NAME.pass\"\nrm -rf \"$PASS_DIR\"\nmkdir \"$PASS_DIR\"\necho \"$PASS_DIR\"\nfind \"$PROJECT_DIR/Images.xcassets\" -type f -name \"*.png\" | xargs -I {} cp {} \"$PASS_DIR\"\ncp \"$PROJECT_DIR/pass.json\" \"$PASS_DIR\"\n\n# sign the bundle\nSIGN_PASS_CMD=\"$BUILT_PRODUCTS_DIR/signpass -p $PASS_DIR\"\necho \"$SIGN_PASS_CMD\"\neval \"$SIGN_PASS_CMD\"\n\nopen \"$PROJECT_DIR/$PASS_NAME.pkpass\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4993FAAE1CD6752400DF580C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4993FABE1CD699E900DF580C /* Definitions.swift in Sources */,
+				4993FAB61CD6752400DF580C /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4993FABB1CD6752F00DF580C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4993FAB11CD6752400DF580C /* ImagesSizeChecker */;
+			targetProxy = 4993FABA1CD6752F00DF580C /* PBXContainerItemProxy */;
+		};
+		49FF3C441CD66F48007804C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = signpass;
+			targetProxy = 49FF3C431CD66F48007804C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4993FAB81CD6752400DF580C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4993FAB91CD6752400DF580C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		49FF3C351CD66C22007804C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		49FF3C361CD66C22007804C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		49FF3C3B1CD66F2A007804C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PASS_NAME = mypass;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		49FF3C3C1CD66F2A007804C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PASS_NAME = mypass;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4993FAB71CD6752400DF580C /* Build configuration list for PBXNativeTarget "ImagesSizeChecker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4993FAB81CD6752400DF580C /* Debug */,
+				4993FAB91CD6752400DF580C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49FF3C341CD66C22007804C4 /* Build configuration list for PBXProject "PKPassGenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49FF3C351CD66C22007804C4 /* Debug */,
+				49FF3C361CD66C22007804C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49FF3C3A1CD66F2A007804C4 /* Build configuration list for PBXAggregateTarget "Generate PKPass" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				49FF3C3B1CD66F2A007804C4 /* Debug */,
+				49FF3C3C1CD66F2A007804C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 49FF3C311CD66C22007804C4 /* Project object */;
+}
