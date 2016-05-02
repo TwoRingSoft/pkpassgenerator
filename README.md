@@ -11,7 +11,7 @@ Once you've done that, follow these steps to generate a pass:
 3. in the Build Settings for `Generate PKPass`, set the value of `PASS_NAME` as you'd like your final pass' filename to be named
 4. select the `Generate PKPass` scheme and build (⌘+B)
 
-This will check the sizes of the images you provided, copy them along with `pass.json` into a directory called `$PASS_NAME.pkpass`, and run `signpass` on it. If everything goes ok, a pass should appear on your screen.
+This will check the sizes of the images you provided, copy them along with `pass.json` into a directory called `$PASS_NAME.pass`, and run `signpass` on it. If everything goes ok, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
 
 `signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included here to complete the signing process.
 
