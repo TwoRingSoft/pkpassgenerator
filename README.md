@@ -49,3 +49,11 @@ Other helpful references:
 	Design guidelines for passes, as well as the overall development process
 - [PassKit Package Format Reference](https://developer.apple.com/library/ios/documentation/UserExperience/Reference/PassKit_Bundle/Chapters/Introduction.html#//apple_ref/doc/uid/TP40012026-CH0-SW1):
 	Reference for all the keys and values in the `pass.json` file, as well as the expected members of the `$PASS_NAME.pass` directory
+
+## Next Steps
+
+- Devise a way to manage multiple passes, from this project or otherwise (possibly including a better way to get the name in besides the `PASS_NAME` build setting)
+- Automate creation of the "Pass Type ID" Certificate
+- Automate extraction of ID and Team ID from the certificate
+
+**Pull requests welcome!**
