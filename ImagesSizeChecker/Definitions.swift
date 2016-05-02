@@ -46,14 +46,9 @@ struct PassImages {
 }
 
 struct ImageSet {
-    var single: Image
-    var double: Image
-    var triple: Image
-}
-
-struct Image {
-    var image: CIImage
-    var scale: Scale
+    var single: CIImage
+    var double: CIImage
+    var triple: CIImage
 }
 
 enum Scale: String {

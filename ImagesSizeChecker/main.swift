@@ -44,9 +44,9 @@ func parseImageSet(basePath: String) -> ImageSet? {
         exit(1)
     }
 
-    var single: Image?
-    var double: Image?
-    var triple: Image?
+    var single: CIImage?
+    var double: CIImage?
+    var triple: CIImage?
 
     for image in images {
         guard let imageDict = image as? NSDictionary else {
@@ -74,11 +74,11 @@ func parseImageSet(basePath: String) -> ImageSet? {
 
             switch(scaleValue) {
             case .Single:
-                single = Image(image: ciImage, scale: scaleValue)
+                single = ciImage
             case .Double:
-                double = Image(image: ciImage, scale: scaleValue)
+                double = ciImage
             case .Triple:
-                triple = Image(image: ciImage, scale: scaleValue)
+                triple = ciImage
             }
         }
     }
@@ -180,101 +180,85 @@ func parsePass(path: String, images: PassImages) -> Pass {
     return Pass(type: type, images: images, formatVersion: formatVersion, barcode: barcode)
 }
 
+func checkImageSet(set: ImageSet, name: String, size: CGSize) -> [String] {
+    var warnings = [String]()
+
+    if !(set.single.extent.size.width <= size.width) { warnings.append("\(name)@1x width must be <= \(size.width)") }
+    if !(set.single.extent.size.height <= size.height) { warnings.append("\(name)@1x height must be <= \(size.height)") }
+
+    if !(set.double.extent.size.width <= size.width * 2) { warnings.append("\(name)@2x width must be <= \(size.width * 2)") }
+    if !(set.double.extent.size.height <= size.height * 2) { warnings.append("\(name)@2x height must be <= \(size.height * 2)") }
+
+    if !(set.triple.extent.size.width <= size.width * 3) { warnings.append("\(name)@3x width must be <= \(size.width * 3)") }
+    if !(set.triple.extent.size.height <= size.height * 3) { warnings.append("\(name)@3x height must be <= \(size.height * 3)") }
+
+    return warnings
+}
+
 func checkSizesInPass(pass: Pass) {
     var warnings = [String]()
     if let background = pass.images.background {
-        if !(background.single.image.extent.size.width <= 180) { warnings.append("failed image size check: background.single.image.extent.size.width <= 180") }
-        if !(background.single.image.extent.size.height <= 220) { warnings.append("failed image size check: background.single.image.extent.size.height <= 220") }
-
-        if !(background.double.image.extent.size.width <= 180 * 2) { warnings.append("failed image size check: background.double.image.extent.size.width <= 180 * 2") }
-        if !(background.double.image.extent.size.height <= 220 * 2) { warnings.append("failed image size check: background.double.image.extent.size.height <= 220 * 2") }
-
-        if !(background.triple.image.extent.size.width <= 180 * 3) { warnings.append("failed image size check: background.triple.image.extent.size.width <= 180 * 3") }
-        if !(background.triple.image.extent.size.height <= 220 * 3) { warnings.append("failed image size check: background.triple.image.extent.size.height <= 220 * 3") }
+        warnings.appendContentsOf(checkImageSet(background, name: "background", size: CGSize(width: 180, height: 220)))
     }
 
     if let footer = pass.images.footer {
-        if !(footer.single.image.extent.size.width <= 286) { warnings.append("failed image size check: footer.single.image.extent.size.width <= 286") }
-        if !(footer.single.image.extent.size.height <= 15) { warnings.append("failed image size check: footer.single.image.extent.size.height <= 15") }
-
-        if !(footer.double.image.extent.size.width <= 286 * 2) { warnings.append("failed image size check: footer.double.image.extent.size.width <= 286 * 2") }
-        if !(footer.double.image.extent.size.height <= 15 * 2) { warnings.append("failed image size check: footer.double.image.extent.size.height <= 15 * 2") }
-
-        if !(footer.triple.image.extent.size.width <= 286 * 3) { warnings.append("failed image size check: footer.triple.image.extent.size.width <= 286 * 3") }
-        if !(footer.triple.image.extent.size.height <= 15 * 3) { warnings.append("failed image size check: footer.triple.image.extent.size.height <= 15 * 3") }
+        warnings.appendContentsOf(checkImageSet(footer, name: "footer", size: CGSize(width: 286, height: 15)))
     }
 
     if let icon = pass.images.icon {
-        if !(icon.single.image.extent.size.width <= 29) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29") }
-        if !(icon.single.image.extent.size.height <= 29) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29") }
-
-        if !(icon.double.image.extent.size.width <= 29 * 2) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29 * 2") }
-        if !(icon.double.image.extent.size.height <= 29 * 2) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29 * 2") }
-
-        if !(icon.triple.image.extent.size.width <= 29 * 3) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29 * 3") }
-        if !(icon.triple.image.extent.size.height <= 29 * 3) { warnings.append("failed image size check: icon.single.image.extent.size.width <= 29 * 3") }
+        warnings.appendContentsOf(checkImageSet(icon, name: "icon", size: CGSize(width: 29, height: 29)))
     }
 
     if let logo = pass.images.logo {
-        if !(logo.single.image.extent.size.width <= 160) { warnings.append("failed image size check: logo.single.image.extent.size.width <= 160") }
-        if !(logo.single.image.extent.size.height <= 50) { warnings.append("failed image size check: logo.single.image.extent.size.height <= 50") }
-
-        if !(logo.double.image.extent.size.width <= 160 * 2) { warnings.append("failed image size check: logo.double.image.extent.size.width <= 160 * 2") }
-        if !(logo.double.image.extent.size.height <= 50 * 2) { warnings.append("failed image size check: logo.double.image.extent.size.height <= 50 * 2") }
-
-        if !(logo.triple.image.extent.size.width <= 160 * 3) { warnings.append("failed image size check: logo.triple.image.extent.size.width <= 160 * 3") }
-        if !(logo.triple.image.extent.size.height <= 50 * 3) { warnings.append("failed image size check: logo.triple.image.extent.size.height <= 50 * 3") }
+        warnings.appendContentsOf(checkImageSet(logo, name: "logo", size: CGSize(width: 160, height: 50)))
     }
 
     if let thumbnail = pass.images.thumbnail {
-        if !(thumbnail.single.image.extent.size.width <= 90) { warnings.append("failed image size check: thumbnail.single.image.extent.size.width <= 90") }
-        if !(thumbnail.single.image.extent.size.height <= 90) { warnings.append("failed image size check: thumbnail.single.image.extent.size.height <= 90") }
-        let singleAspectRatio = thumbnail.single.image.extent.size.width / thumbnail.single.image.extent.size.height
-        if !(singleAspectRatio <= (3.0 / 2.0) && singleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @1x aspect ratio >= (3.0 / 2.0) && thumbnail @1x aspect ratio >= (2.0 / 3.0)") }
+        warnings.appendContentsOf(checkImageSet(thumbnail, name: "thumbnail", size: CGSize(width: 90, height: 90)))
 
-        if !(thumbnail.double.image.extent.size.width <= 90 * 2) { warnings.append("failed image size check: thumbnail.double.image.extent.size.width <= 90 * 2") }
-        if !(thumbnail.double.image.extent.size.height <= 90 * 2) { warnings.append("failed image size check: thumbnail.double.image.extent.size.height <= 90 * 2") }
-        let doubleAspectRatio = thumbnail.double.image.extent.size.width / thumbnail.double.image.extent.size.height
-        if !(doubleAspectRatio <= (3.0 / 2.0) && doubleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @2x aspect ratio >= (3.0 / 2.0) && thumbnail @2x aspect ratio >= (2.0 / 3.0)") }
+        let singleAspectRatio = thumbnail.single.extent.size.width / thumbnail.single.extent.size.height
+        if !(singleAspectRatio <= (3.0 / 2.0) && singleAspectRatio >= (2.0 / 3.0)) { warnings.append("thumbnail @1x aspect ratio must be <= 3/2 and >= 2/3") }
 
-        if !(thumbnail.triple.image.extent.size.width <= 90 * 3) { warnings.append("failed image size check: thumbnail.triple.image.extent.size.width <= 90 * 3") }
-        if !(thumbnail.triple.image.extent.size.height <= 90 * 3) { warnings.append("failed image size check: thumbnail.triple.image.extent.size.height <= 90 * 3") }
-        let tripleAspectRatio = thumbnail.triple.image.extent.size.width / thumbnail.triple.image.extent.size.height
-        if !(tripleAspectRatio <= (3.0 / 2.0) && tripleAspectRatio >= (2.0 / 3.0)) { warnings.append("failed image size check: thumbnail @3x aspect ratio >= (3.0 / 2.0) && thumbnail @3x aspect ratio >= (2.0 / 3.0)") }
+        let doubleAspectRatio = thumbnail.double.extent.size.width / thumbnail.double.extent.size.height
+        if !(doubleAspectRatio <= (3.0 / 2.0) && doubleAspectRatio >= (2.0 / 3.0)) { warnings.append("thumbnail @2x aspect ratio must be <= 3/2 and >= 2/3") }
+
+        let tripleAspectRatio = thumbnail.triple.extent.size.width / thumbnail.triple.extent.size.height
+        if !(tripleAspectRatio <= (3.0 / 2.0) && tripleAspectRatio >= (2.0 / 3.0)) { warnings.append("thumbnail @3x aspect ratio must be <= 3/2 and >= 2/3") }
     }
 
+    // FIXME: the checks for strip.png are probably not 100% accurate
     if let strip = pass.images.strip {
         // 1x checks
         if pass.type == .EventTicket {
-            if !(strip.single.image.extent.size.width <= 320) { warnings.append("failed image size check: strip.single.image.extent.size.width <= 320") }
-            if !(strip.single.image.extent.size.height <= 84) { warnings.append("failed image size check: strip.single.image.extent.size.height <= 84") }
+            if !(strip.single.extent.size.width <= 320) { warnings.append("strip@1x width must be <= 320 for Event Tickets") }
+            if !(strip.single.extent.size.height <= 84) { warnings.append("strip@1x height must be <=84 for Event Tickets") }
         } else if let barcode = pass.barcode where barcode.format == BarCodeFormat.PKBarcodeFormatQR {
-            if !(strip.single.image.extent.size.width <= 320) { warnings.append("failed image size check: strip.single.image.extent.size.width <= 320") }
-            if !(strip.single.image.extent.size.height <= 110) { warnings.append("failed image size check: strip.single.image.extent.size.height <= 110") }
+            if !(strip.single.extent.size.width <= 320) { warnings.append("strip@1x width must be <= 320 when appearing with QR codes") }
+            if !(strip.single.extent.size.height <= 110) { warnings.append("strip@1x height must be <= 110 when appearing with QR codes") }
         } else {
-            if !(strip.single.image.extent.size.width <= 320) { warnings.append("failed image size check: strip.single.image.extent.size.width <= 320") }
-            if !(strip.single.image.extent.size.height <= 123) { warnings.append("failed image size check: strip.single.image.extent.size.height <= 123") }
+            if !(strip.single.extent.size.width <= 320) { warnings.append("strip@1x width must be <= 320") }
+            if !(strip.single.extent.size.height <= 123) { warnings.append("strip@1x height must be <= 123") }
         }
 
         // 2x/3x checks
         if pass.type == .EventTicket {
-            if !(strip.double.image.extent.size.width <= 375 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.width <= 375 * 2") }
-            if !(strip.double.image.extent.size.height <= 98 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.height <= 98 * 2") }
+            if !(strip.double.extent.size.width <= 375 * 2) { warnings.append("strip@2x width must be <= \(375 * 2) for Event Tickets") }
+            if !(strip.double.extent.size.height <= 98 * 2) { warnings.append("strip@2x height must be <= \(98 * 2) for Event Tickets") }
 
-            if !(strip.triple.image.extent.size.width <= 375 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.width <= 375 * 3") }
-            if !(strip.triple.image.extent.size.height <= 98 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.height <= 98 * 3") }
+            if !(strip.triple.extent.size.width <= 375 * 3) { warnings.append("strip@3x width must be <= \(375 * 3) for Event Tickets") }
+            if !(strip.triple.extent.size.height <= 98 * 3) { warnings.append("strip@3x height must be <= \(98 * 3) for Event Tickets") }
         } else if pass.type == .StoreCard || pass.type == .Coupon {
-            if !(strip.double.image.extent.size.width <= 375 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.width <= 375 * 2") }
-            if !(strip.double.image.extent.size.height <= 144 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.height <= 144 * 2") }
+            if !(strip.double.extent.size.width <= 375 * 2) { warnings.append("strip@2x width must be <= \(375 * 2) for Store Cards and Coupons") }
+            if !(strip.double.extent.size.height <= 144 * 2) { warnings.append("strip@2x height must be <= \(144 * 2) for Store Cards and Coupons") }
 
-            if !(strip.triple.image.extent.size.width <= 375 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.width <= 375 * 3") }
-            if !(strip.triple.image.extent.size.height <= 144 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.height <= 144 * 3") }
+            if !(strip.triple.extent.size.width <= 375 * 3) { warnings.append("strip@3x width must be <= \(375 * 3) for Store Cards and Coupons") }
+            if !(strip.triple.extent.size.height <= 144 * 3) { warnings.append("strip@3x height must be <= \(144 * 3) for Store Cards and Coupons") }
         } else {
-            if !(strip.double.image.extent.size.width <= 375 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.width <= 375 * 2") }
-            if !(strip.double.image.extent.size.height <= 123 * 2) { warnings.append("failed image size check: strip.double.image.extent.size.height <= 123 * 2") }
+            if !(strip.double.extent.size.width <= 375 * 2) { warnings.append("strip@2x width must be <= \(375 * 2)") }
+            if !(strip.double.extent.size.height <= 123 * 2) { warnings.append("strip@2x height must be <= \(123 * 2)") }
 
-            if !(strip.triple.image.extent.size.width <= 375 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.width <= 375 * 3") }
-            if !(strip.triple.image.extent.size.height <= 123 * 3) { warnings.append("failed image size check: strip.triple.image.extent.size.height <= 123 * 3") }
+            if !(strip.triple.extent.size.width <= 375 * 3) { warnings.append("strip@3x width must be <= \(375 * 3)") }
+            if !(strip.triple.extent.size.height <= 123 * 3) { warnings.append("strip@3x height must be <= \(123 * 2)") }
         }
     }
 
