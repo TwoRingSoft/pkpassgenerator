@@ -17,7 +17,7 @@ This will check the sizes of the images you provided, copy them along with `pass
 
 ## Images
 
-**Note:** do *not* use transparency in your `icon` image. Transparent regions are drawn as black when the icon is displayed in shared through Messages, emails, etc.
+**Note:** do *not* use transparency in your `icon` image. Transparent regions are drawn as black when the icon is displayed in shares through Messages, emails, etc.
 
 ### Sizes
 
@@ -26,6 +26,8 @@ There are various guidelines on sizes of images, which the project will check an
 - [https://developer.apple.com/library/watchos/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html/apple_ref/doc/uid/TP40012195-CH4-SW52#//apple_ref/doc/uid/TP40012195-CH4-SW52](https://developer.apple.com/library/watchos/documentation/UserExperience/Conceptual/PassKit_PG/Creating.html/apple_ref/doc/uid/TP40012195-CH4-SW52#//apple_ref/doc/uid/TP40012195-CH4-SW52)
 - [https://www.raywenderlich.com/25227/passbook-faq](https://www.raywenderlich.com/25227/passbook-faq)
 - [https://www.raywenderlich.com/20734/beginning-passbook-part-1](https://www.raywenderlich.com/20734/beginning-passbook-part-1)
+
+I'm still not 100% sure how to check for the proper size of `strip.png` per device or OS version, so if anyone has any insight please open a pull request!
 
 ## Hosting
 
