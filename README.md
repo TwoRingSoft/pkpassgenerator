@@ -53,7 +53,7 @@ Other helpful references:
 ## Next Steps
 
 - Devise a way to manage multiple passes, from this project or otherwise (possibly including a better way to get the name in besides the `PASS_NAME` build setting)
-- Automate creation of the "Pass Type ID" Certificate
+- Automate creation of the "Pass Type ID" Certificate using [fastlane spaceship](https://github.com/fastlane/fastlane/tree/master/spaceship)
 - Automate extraction of ID and Team ID from the certificate
 
 **Pull requests welcome!**
