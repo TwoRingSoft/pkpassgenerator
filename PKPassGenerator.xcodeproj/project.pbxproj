@@ -11,8 +11,7 @@
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 49FF3C3A1CD66F2A007804C4 /* Build configuration list for PBXAggregateTarget "Generate PKPass" */;
 			buildPhases = (
-				4993FABC1CD6753800DF580C /* Check image sizes */,
-				49FF3C481CD66FEA007804C4 /* Create pass */,
+				4993FABC1CD6753800DF580C /* Create pass */,
 			);
 			dependencies = (
 				4993FABB1CD6752F00DF580C /* PBXTargetDependency */,
@@ -194,21 +193,7 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4993FABC1CD6753800DF580C /* Check image sizes */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check image sizes";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PROJECT_DIR\"/create-pass.sh";
-		};
-		49FF3C481CD66FEA007804C4 /* Create pass */ = {
+		4993FABC1CD6753800DF580C /* Create pass */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -220,7 +205,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "";
+			shellScript = "\"$PROJECT_DIR\"/create-pass.sh";
 		};
 /* End PBXShellScriptBuildPhase section */
 
