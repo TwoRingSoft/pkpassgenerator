@@ -68,6 +68,7 @@
 		4993FAB51CD6752400DF580C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4993FABD1CD699E900DF580C /* Definitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Definitions.swift; sourceTree = "<group>"; };
 		4993FAC11CD6C3B000DF580C /* create-pass.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "create-pass.sh"; sourceTree = "<group>"; };
+		49F25F772177AD88004A4424 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		49FF3C371CD66C31007804C4 /* pass.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pass.json; sourceTree = "<group>"; };
 		49FF3C381CD66E6A007804C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = signpass.xcodeproj; path = signpass/signpass.xcodeproj; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		49FF3C301CD66C22007804C4 = {
 			isa = PBXGroup;
 			children = (
+				49F25F772177AD88004A4424 /* README.md */,
 				49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */,
 				49FF3C381CD66E6A007804C4 /* Images.xcassets */,
 				49FF3C371CD66C31007804C4 /* pass.json */,
