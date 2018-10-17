@@ -15,6 +15,8 @@ enum PassType: String {
     case Coupon = "coupon"
     case EventTicket = "eventTicket"
     case StoreCard = "storeCard"
+    
+    static var allTypes: [PassType] = [.Generic, .BoardingPass, .Coupon, .EventTicket, .StoreCard]
 }
 
 struct Pass {

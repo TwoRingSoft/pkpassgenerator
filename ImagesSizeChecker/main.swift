@@ -9,14 +9,11 @@
 import AppKit
 import Foundation
 
-func parseJSON(path: String) throws -> NSDictionary? {
-    if !NSFileManager.defaultManager().fileExistsAtPath(path) {
-        return nil
-    }
-
+func parseJSON(path: String) -> [String: Any]? {
     do {
-        let JSONData = try NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
-        return try NSJSONSerialization.JSONObjectWithData(JSONData, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+        let url = URL(fileURLWithPath: path)
+        let data = try Data(contentsOf: url)
+        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: String]
     } catch {
         print("error: could not parse json at \(path)")
         exit(1)
@@ -24,22 +21,14 @@ func parseJSON(path: String) throws -> NSDictionary? {
 }
 
 func parseImageSet(basePath: String) -> ImageSet? {
-
     let jsonPath = "\(basePath)/Contents.json"
 
-    var optionalDict: NSDictionary?
-    do {
-        optionalDict = try parseJSON(jsonPath)
-    } catch {
-        print("error: \(jsonPath) does not exist")
-    }
-
-    guard let dict = optionalDict else {
+    guard let dict = parseJSON(path: jsonPath) else {
         print("error: couldn't parse json at \(jsonPath)")
         exit(1)
     }
 
-    guard let images = dict["images"] as? NSArray else {
+    guard let images = dict["images"] as? [[String: Any]] else {
         print("error: unexpected object value keyed on \"images\"")
         exit(1)
     }
@@ -49,14 +38,9 @@ func parseImageSet(basePath: String) -> ImageSet? {
     var triple: CIImage?
 
     for image in images {
-        guard let imageDict = image as? NSDictionary else {
-            print("error: unexpected object in \"images\" array")
-            exit(1)
-        }
+        if let filename = image["filename"] as? String {
 
-        if let filename = imageDict["filename"] as? String {
-
-            guard let scale = imageDict["scale"] as? String else {
+            guard let scale = image["scale"] as? String else {
                 print("error: couldn't find value for key \"scale\"")
                 exit(1)
             }
@@ -67,7 +51,7 @@ func parseImageSet(basePath: String) -> ImageSet? {
             }
 
             let filePath = "\(basePath)/\(filename)"
-            guard let ciImage = CIImage(contentsOfURL: NSURL(fileURLWithPath: filePath)) else {
+            guard let ciImage = CIImage(contentsOf: URL(fileURLWithPath: filePath)) else {
                 print("error: could not read file at \(filePath)")
                 exit(1)
             }
@@ -109,38 +93,26 @@ func parseImageSet(basePath: String) -> ImageSet? {
     return ImageSet(single: unwrappedSingle, double: unwrappedDouble, triple: unwrappedTriple)
 }
 
-func passType(fromJSON json: NSDictionary) -> PassType {
-    var types = [PassType]()
-
-    for type: PassType in [.Generic, .BoardingPass, .Coupon, .EventTicket, .StoreCard] {
-        if json[type.rawValue] as? NSDictionary != nil {
-            types.append(type)
-        }
+func passType(fromJSON json: [String: Any]) -> PassType {
+    let types = PassType.allTypes.filter { (type) -> Bool in
+        json.contains(where: { (key, _) -> Bool in
+            key == type.rawValue
+        })
     }
-
-    if types.count == 0 {
-        print("error: no type definition found containing field definitions")
+    
+    assert(types.count > 0, "Unexpected type of pass.")
+    assert(types.count == 1, "Expected only one type of pass.")
+    
+    guard let type = types.first else {
+        print("Unexpected type of pass.")
         exit(1)
     }
-
-    if types.count > 1 {
-        print("error: multiple pass definitions found: \(types)")
-        exit(1)
-    }
-
-    return types.first!
+    
+    return type
 }
 
 func parsePass(path: String, images: PassImages) -> Pass {
-    var optionalPassJSON: NSDictionary?
-    do {
-        optionalPassJSON = try parseJSON(path)
-    } catch {
-        print("error: couldn't parse \(path)")
-        exit(1)
-    }
-
-    guard let passJSON = optionalPassJSON else {
+    guard let passJSON = parseJSON(path: path) else {
         print("error: couldn't parse \(path)")
         exit(1)
     }
@@ -155,26 +127,27 @@ func parsePass(path: String, images: PassImages) -> Pass {
         exit(1)
     }
 
-    var barcode: BarCode?
-    if let barcodeDict = passJSON["barcode"] as? NSDictionary {
-        guard let message = barcodeDict["message"] as? String else {
-            print("error: could not find barcode message")
-            exit(1)
-        }
-
-        guard let format = barcodeDict["format"] as? String else {
-            print("error: could not find barcode format")
-            exit(1)
-        }
-
-        guard let formatValue = BarCodeFormat(rawValue: format) else {
-            print("error: unknown barcode format supplied")
-            exit(1)
-        }
-
-        barcode = BarCode(message: message, format: formatValue)
+    guard let barcodeDict = passJSON["barcode"] as? [String: String] else {
+        print("No barcode definitions found")
+        exit(1)
+    }
+    
+    guard let message = barcodeDict["message"] else {
+        print("error: could not find barcode message")
+        exit(1)
     }
 
+    guard let format = barcodeDict["format"] else {
+        print("error: could not find barcode format")
+        exit(1)
+    }
+
+    guard let formatValue = BarCodeFormat(rawValue: format) else {
+        print("error: unknown barcode format supplied")
+        exit(1)
+    }
+
+    let barcode = BarCode(message: message, format: formatValue)
     let type = passType(fromJSON: passJSON)
 
     return Pass(type: type, images: images, formatVersion: formatVersion, barcode: barcode)
@@ -198,23 +171,23 @@ func checkImageSet(set: ImageSet, name: String, size: CGSize) -> [String] {
 func checkSizesInPass(pass: Pass) {
     var warnings = [String]()
     if let background = pass.images.background {
-        warnings.appendContentsOf(checkImageSet(background, name: "background", size: CGSize(width: 180, height: 220)))
+        warnings.append(contentsOf: checkImageSet(set: background, name: "background", size: CGSize(width: 180, height: 220)))
     }
 
     if let footer = pass.images.footer {
-        warnings.appendContentsOf(checkImageSet(footer, name: "footer", size: CGSize(width: 286, height: 15)))
+        warnings.append(contentsOf:checkImageSet(set: footer, name: "footer", size: CGSize(width: 286, height: 15)))
     }
 
     if let icon = pass.images.icon {
-        warnings.appendContentsOf(checkImageSet(icon, name: "icon", size: CGSize(width: 29, height: 29)))
+        warnings.append(contentsOf:checkImageSet(set: icon, name: "icon", size: CGSize(width: 29, height: 29)))
     }
 
     if let logo = pass.images.logo {
-        warnings.appendContentsOf(checkImageSet(logo, name: "logo", size: CGSize(width: 160, height: 50)))
+        warnings.append(contentsOf:checkImageSet(set: logo, name: "logo", size: CGSize(width: 160, height: 50)))
     }
 
     if let thumbnail = pass.images.thumbnail {
-        warnings.appendContentsOf(checkImageSet(thumbnail, name: "thumbnail", size: CGSize(width: 90, height: 90)))
+        warnings.append(contentsOf:checkImageSet(set: thumbnail, name: "thumbnail", size: CGSize(width: 90, height: 90)))
 
         let singleAspectRatio = thumbnail.single.extent.size.width / thumbnail.single.extent.size.height
         if !(singleAspectRatio <= (3.0 / 2.0) && singleAspectRatio >= (2.0 / 3.0)) { warnings.append("thumbnail @1x aspect ratio must be <= 3/2 and >= 2/3") }
@@ -232,7 +205,7 @@ func checkSizesInPass(pass: Pass) {
         if pass.type == .EventTicket {
             if !(strip.single.extent.size.width <= 320) { warnings.append("strip@1x width must be <= 320 for Event Tickets") }
             if !(strip.single.extent.size.height <= 84) { warnings.append("strip@1x height must be <=84 for Event Tickets") }
-        } else if let barcode = pass.barcode where barcode.format == BarCodeFormat.PKBarcodeFormatQR {
+        } else if let barcode = pass.barcode, barcode.format == BarCodeFormat.PKBarcodeFormatQR {
             if !(strip.single.extent.size.width <= 320) { warnings.append("strip@1x width must be <= 320 when appearing with QR codes") }
             if !(strip.single.extent.size.height <= 110) { warnings.append("strip@1x height must be <= 110 when appearing with QR codes") }
         } else {
@@ -267,35 +240,27 @@ func checkSizesInPass(pass: Pass) {
     }
 }
 
-let args = NSProcessInfo.processInfo().arguments
+let args = ProcessInfo.processInfo.arguments
 
-let backgroundImageSet = parseImageSet(args[2])
-let footerImageSet = parseImageSet(args[3])
-let iconImageSet = parseImageSet(args[4])
-let logoImageSet = parseImageSet(args[5])
-let stripImageSet = parseImageSet(args[6])
-let thumbnailImageSet = parseImageSet(args[7])
+let backgroundImageSet = parseImageSet(basePath: args[2])
+let footerImageSet = parseImageSet(basePath: args[3])
+let iconImageSet = parseImageSet(basePath: args[4])
+let logoImageSet = parseImageSet(basePath: args[5])
+let stripImageSet = parseImageSet(basePath: args[6])
+let thumbnailImageSet = parseImageSet(basePath: args[7])
 
-let passImages = PassImages(background: backgroundImageSet, footer: footerImageSet, icon: iconImageSet, logo: logoImageSet, strip: stripImageSet, thumbnail: thumbnailImageSet)
+let passImages = PassImages(
+    background: backgroundImageSet,
+    footer: footerImageSet,
+    icon: iconImageSet,
+    logo: logoImageSet,
+    strip: stripImageSet,
+    thumbnail: thumbnailImageSet
+)
 
 let passPath = args[1]
-let pass = parsePass(passPath, images: passImages)
+let pass = parsePass(path: passPath, images: passImages)
 
-checkSizesInPass(pass)
+checkSizesInPass(pass: pass)
 
-print("here")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("Finished!")
