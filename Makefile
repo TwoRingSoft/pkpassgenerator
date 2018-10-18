@@ -1,6 +1,7 @@
 init:
 	which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	brew upgrade jq
+	cp pass.json.template pass.json
 
 tools: ImagesSizeChecker signpass
 	mkdir -p bin
@@ -10,4 +11,3 @@ tools: ImagesSizeChecker signpass
 
 pass: tools
 	sh create-pass.sh .
-	

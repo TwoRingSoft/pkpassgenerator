@@ -7,17 +7,18 @@
 ## Building a Wallet Business Card
 
 1. Create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
+1. `make init`; this will install dependencies and make a copy of `pass.json.template` to `pass.json` for you to edit, which is `.gitignore` to avoid committing sensitive data to source control
 1. Fill in the blanks provided in `pass.json` (see below about JSON)
 1. In Xcode, add any images you'd like to include to `Images.xcassets` (see notes on Images below)
 1. Build the pass
     - In Xcode, select the `Generate PKPass` scheme and build (⌘+B)
-    - On the command line, execute `make pass`
+    - On the command line, `make pass`
 
-> The last step runs `create-pass.sh`, which checks the sizes of the images you provided, copies them along with `pass.json` into a directory called `$PASS_NAME.pass`, and provides that to `signpass`. 
+> The last step builds the `ImageSizeChecker` and `signpass` executables and runs `create-pass.sh`, which checks the sizes of the images you provided, copies them along with `pass.json` into a directory called `$PASS_NAME.pass`, and provides that to `signpass`. 
 
-> `PASS_NAME` is derived from the URL you specify for the hosted filename at `barcode > message` from pass.json. 
+> `PASS_NAME` is derived from the URL you specify for the hosted filename at `barcode.message` from pass.json. 
 
-If everything goes ok, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
+If everything works, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
 
 ## JSON
 

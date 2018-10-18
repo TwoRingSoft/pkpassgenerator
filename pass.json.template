@@ -14,24 +14,31 @@
     "foregroundColor": "rgb(<#red#>, <#green#>, <#blue#>)",
     "backgroundColor": "rgb(<#red#>, <#green#>, <#blue#>)",
     "generic": {
-        "primaryFields": [{
-                          "key": "fullname",
-                          "label": "NAME",
-                          "value": "<#your name. if it gets truncated next to an image, you can put in a ‘\n’#>"
-                          }],
-        "secondaryFields": [{
-                            "key": "title",
-                            "label": "TITLE",
-                            "value": "<#your title at your company#>"
-                            }],
-        "backFields": [{
-                       "key": "nameBack",
-                       "label": "NAME",
-                       "value": "<#name, title, etc#>"
-                       }, {
-                       "key": "emailBack",
-                       "label": "EMAIL",
-                       "value": "<#email address#>"
-                       }]
+        "primaryFields": [
+            {
+                "key": "fullname",
+                "label": "NAME",
+                "value": "<#your name. if it gets truncated next to an image, you can put in a ‘\n’#>"
+            }
+        ],
+        "secondaryFields": [
+            {
+                "key": "title",
+                "label": "TITLE",
+                "value": "<#your title at your company#>"
+            }
+        ],
+        "backFields": [
+            {
+                "key": "nameBack",
+                "label": "NAME",
+                "value": "<#name, title, etc#>"
+            },
+            {
+                "key": "emailBack",
+                "label": "EMAIL",
+                "value": "<#email address#>"
+            }
+        ]
     }
 }

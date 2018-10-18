@@ -71,9 +71,9 @@
 		4993FAC11CD6C3B000DF580C /* create-pass.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "create-pass.sh"; sourceTree = "<group>"; };
 		49F25F772177AD88004A4424 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		49F25F782177C1A5004A4424 /* pass.business-card.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "pass.business-card.json"; sourceTree = "<group>"; };
-		49F25F792177C1B9004A4424 /* pass-_template_.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "pass-_template_.json"; sourceTree = "<group>"; };
 		49F25F7A2177C2E7004A4424 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		49F25F842179234C004A4424 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		49F25F8521793387004A4424 /* pass.json.template */ = {isa = PBXFileReference; explicitFileType = text.json; path = pass.json.template; sourceTree = "<group>"; };
 		49FF3C371CD66C31007804C4 /* pass.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pass.json; sourceTree = "<group>"; };
 		49FF3C381CD66E6A007804C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = signpass.xcodeproj; path = signpass/signpass.xcodeproj; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 				49F25F772177AD88004A4424 /* README.md */,
 				49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */,
 				49FF3C381CD66E6A007804C4 /* Images.xcassets */,
-				49F25F792177C1B9004A4424 /* pass-_template_.json */,
+				49F25F8521793387004A4424 /* pass.json.template */,
 				49F25F782177C1A5004A4424 /* pass.business-card.json */,
 				49FF3C371CD66C31007804C4 /* pass.json */,
 				4993FAC11CD6C3B000DF580C /* create-pass.sh */,
