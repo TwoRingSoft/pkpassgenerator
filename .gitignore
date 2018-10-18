@@ -3,3 +3,7 @@ bin/
 pass.json
 *.pass
 *.pkpass
+
+# track the stock images, ignore all other asset catalogs
+*.xcassets
+^Images.xcassets

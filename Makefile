@@ -1,7 +1,10 @@
 init:
+	# ensure Homebrew is installed
 	which brew || /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-	brew upgrade jq
-	cp pass.json.template pass.json
+	# ensure jq is installed
+	which jq || brew install jq
+	# ensure there's a pass.json ready to go
+	stat pass.json || cp pass.json.template pass.json
 
 tools: ImagesSizeChecker signpass
 	mkdir -p bin

@@ -7,7 +7,7 @@
 1. Create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
 1. `make init`–this will install dependencies and make a copy of `pass.json.template` to `pass.json` for you to edit (see notes on JSON below)
 1. Fill in the blanks provided in `pass.json` (see notes on JSON below)
-1. In Xcode, add any images you'd like to include to `Images.xcassets` (see notes on Images below)
+1. Copy `Images.xcassets` to `$PASS_NAME.xcassets` and insert your images (`xed $PASS_NAME.xcassets` will open the asset catalog in Xcode to make this easier)
 1. Build the pass
     - In Xcode, select the `Generate PKPass` scheme and build (⌘+B)
     - On the command line, `make pass`

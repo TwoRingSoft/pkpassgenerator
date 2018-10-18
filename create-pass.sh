@@ -22,25 +22,32 @@ else
     EXE_DIR="${BUILT_PRODUCTS_DIR}"
 fi
 
-"${EXE_DIR}/ImagesSizeChecker"                      \
-    $ROOT_DIR/pass.json                             \
-    $ROOT_DIR/Images.xcassets/background.imageset   \
-    $ROOT_DIR/Images.xcassets/footer.imageset       \
-    $ROOT_DIR/Images.xcassets/icon.imageset         \
-    $ROOT_DIR/Images.xcassets/logo.imageset         \
-    $ROOT_DIR/Images.xcassets/strip.imageset        \
-    $ROOT_DIR/Images.xcassets/thumbnail.imageset
-
 # derive a pass name from the JSON
 DOWNLOAD_URL=$(jq '.barcode.message' pass.json | sed s/\"//g)
 PASS_NAME=$(basename -s '.pkpass' $DOWNLOAD_URL)
+
+# see if there's a custom xcassets catalog, or use the stock one if not
+if [[ -e "${PASS_NAME}.xcassets" ]]; then
+    ASSET_CATALOG="${PASS_NAME}.xcassets"
+else
+    ASSET_CATALOG="Images.xcassets"
+fi
+
+"${EXE_DIR}/ImagesSizeChecker"                          \
+    "${ROOT_DIR}/pass.json"                             \
+    "${ROOT_DIR}/${ASSET_CATALOG}/background.imageset"  \
+    "${ROOT_DIR}/${ASSET_CATALOG}/footer.imageset"      \
+    "${ROOT_DIR}/${ASSET_CATALOG}/icon.imageset"        \
+    "${ROOT_DIR}/${ASSET_CATALOG}/logo.imageset"        \
+    "${ROOT_DIR}/${ASSET_CATALOG}/strip.imageset"       \
+    "${ROOT_DIR}/${ASSET_CATALOG}/thumbnail.imageset"
 
 # copy resources into pass container directory
 PASS_DIR="${ROOT_DIR}/${PASS_NAME}.pass"
 rm -rf "${PASS_DIR}"
 mkdir "${PASS_DIR}"
 echo "${PASS_DIR}"
-find "${ROOT_DIR}/Images.xcassets" -type f -name "*.png" | xargs -I {} cp {} "${PASS_DIR}"
+find "${ROOT_DIR}/${ASSET_CATALOG}" -type f -name "*.png" | xargs -I {} cp {} "${PASS_DIR}"
 cp "${ROOT_DIR}/pass.json" "${PASS_DIR}"
 
 # sign the bundle
