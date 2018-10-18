@@ -2,7 +2,7 @@
 
 `PKPassGenerator` provides a template for a generic Wallet (née PassKit) pass, and utilities to generate a pass with minimal effort. 
 
-**Note:** One part is necessarily manual: you must create a new "Pass Type ID" Certificate at [developer.apple.com](developer.apple.com).
+**Note:** One part is necessarily manual: you must create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
 
 Once you've done that, follow these steps to generate a pass:
 
