@@ -2,22 +2,38 @@
 
 `PKPassGenerator` provides a template for a generic Wallet (née PassKit) pass, and utilities to generate a pass with minimal effort. 
 
-**Note:** One part is necessarily manual: you must create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
+> `signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included in this project to complete the signing process.
 
-Once you've done that, follow these steps to generate a pass:
+## Building a Wallet Business Card
 
-1. fill in the blanks provided in `pass.json` (this sets up a "generic" pass; see references linked below for more types, as well as fields you can use)
-2. add any images you'd like to include to `Images.xcassets`
-3. in the Build Settings for `Generate PKPass`, set the value of `PASS_NAME` as you'd like your final pass' filename to be named
-4. select the `Generate PKPass` scheme and build (⌘+B)
+1. Create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
+1. Fill in the blanks provided in `pass.json` (see below about JSON)
+1. In Xcode, add any images you'd like to include to `Images.xcassets` (see notes on Images below)
+1. Build the pass
+    - In Xcode, select the `Generate PKPass` scheme and build (⌘+B)
+    - On the command line, execute `make pass`
 
-This will check the sizes of the images you provided, copy them along with `pass.json` into a directory called `$PASS_NAME.pass`, and run `signpass` on it. If everything goes ok, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
+> The last step runs `create-pass.sh`, which checks the sizes of the images you provided, copies them along with `pass.json` into a directory called `$PASS_NAME.pass`, and provides that to `signpass`. 
 
-`signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included here to complete the signing process.
+> `PASS_NAME` is derived from the URL you specify for the hosted filename at `barcode > message` from pass.json. 
+
+If everything goes ok, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
+
+## JSON
+
+There is a template JSON file (pass.json) with placeholders where you fill in the appropriate required values, and a few sample fields for basic info to get you started. 
+
+> This sets up a "generic" pass; see references linked below for more types, as well as fields you may include.
+
+Some values to grab for JSON fields, from the Pass Type certificate you created (open it in Keychain Assistant to see its details):
+
+- `passTypeIdentifier`: **Common Name** Pass Type ID: <this.value>
+- `teamIdentifier`: **Organizational Unit**
+- `barcode.message`: The location at which the `pkpass` file will be located and available for download to peoples' Wallets. 
 
 ## Images
 
-**Note:** do *not* use transparency in your `icon` image. Transparent regions are drawn as black when the icon is displayed in shares through Messages, emails, etc.
+> Do *not* use transparency in your `icon` image. Transparent regions are drawn as black when the icon is displayed in shares through Messages, emails, etc.
 
 ### Sizes
 
@@ -70,7 +86,7 @@ Other helpful references:
 
 ## Next Steps
 
-- Devise a way to manage multiple passes, from this project or otherwise (possibly including a better way to get the name in besides the `PASS_NAME` build setting)
+- Devise a way to manage multiple passes
 - Automate creation of the "Pass Type ID" Certificate using [fastlane spaceship](https://github.com/fastlane/fastlane/tree/master/spaceship)
 - Automate extraction of ID and Team ID from the certificate
 
