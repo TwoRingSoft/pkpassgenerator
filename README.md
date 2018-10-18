@@ -2,7 +2,7 @@
 
 `PKPassGenerator` provides a template for a generic Wallet (née PassKit) pass, and utilities to generate a pass with minimal effort.
 
-## Building a Wallet Business Card
+## Build your Business Card for Wallet
 
 1. Create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
 1. `make init`–this will install dependencies and make a copy of `pass.json.template` to `pass.json` for you to edit (see notes on JSON below)
