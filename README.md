@@ -1,8 +1,6 @@
 # PKPassGenerator
 
-`PKPassGenerator` provides a template for a generic Wallet (née PassKit) pass, and utilities to generate a pass with minimal effort. 
-
-> `signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included in this project to complete the signing process.
+`PKPassGenerator` provides a template for a generic Wallet (née PassKit) pass, and utilities to generate a pass with minimal effort.
 
 ## Building a Wallet Business Card
 
@@ -17,6 +15,8 @@
 > The last step builds the `ImageSizeChecker` and `signpass` executables and runs `create-pass.sh`, which checks the sizes of the images you provided, copies them along with `pass.json` into a directory called `$PASS_NAME.pass`, and provides that to `signpass`. 
 
 > `PASS_NAME` is derived from the URL you specify for the hosted filename at `barcode.message` from pass.json. 
+
+> `signpass.xcodeproj` is provided by Apple in their Wallet Programming Guide, and is included in this project to complete the signing process.
 
 If everything works, a pass should appear on your screen, opened from the file called `$PASS_NAME.pkpass`.
 
