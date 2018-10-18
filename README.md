@@ -51,11 +51,11 @@ There are various guidelines on sizes of images, which the project will check an
     - The thumbnail image (thumbnail.png) displayed next to the fields on the front of the pass. The allotted space is 90 x 90 points. The aspect ratio should be in the range of 2:3 to 3:2, otherwise the image is cropped.
 
 - [https://www.raywenderlich.com/25227/passbook-faq](https://www.raywenderlich.com/25227/passbook-faq)
-    - background@2x.png – 360px x 440px, the image is blurred and cropped a bit on all sides to fit visually inside passbook
-    - icon@2x.png – 58px x 58px, a shine is automatically applied
-    - logo@2x.png – 320px x 100px, usually you should not take up the whole width
-    - strip@2x.png – 624px x 220px (sometimes varies a bit), a shine is applied, you can use suppressStripShine in your pass.json to disable the shine if you don’t want it
-    - thumbnail@2x.png – 180px x 180px
+    - `background@2x.png` – 360px x 440px, the image is blurred and cropped a bit on all sides to fit visually inside passbook
+    - `icon@2x.png` – 58px x 58px, a shine is automatically applied
+    - `logo@2x.png` – 320px x 100px, usually you should not take up the whole width
+    - `strip@2x.png` – 624px x 220px (sometimes varies a bit), a shine is applied, you can use suppressStripShine in your pass.json to disable the shine if you don’t want it
+    - `thumbnail@2x.png` – 180px x 180px
     
 > Note all the sizes below are in pixels for the retina images:
 
