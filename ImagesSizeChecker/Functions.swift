@@ -11,7 +11,7 @@ func parseJSON(path: String) -> [String: Any]? {
     do {
         let url = URL(fileURLWithPath: path)
         let data = try Data(contentsOf: url)
-        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: String]
+        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [String: Any]
     } catch {
         print("error: could not parse json at \(path)")
         exit(1)
