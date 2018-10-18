@@ -5,7 +5,7 @@
 ## Building a Wallet Business Card
 
 1. Create a new "Pass Type ID" Certificate at [developer.apple.com](http://developer.apple.com).
-1. `make init`; this will install dependencies and make a copy of `pass.json.template` to `pass.json` for you to edit, which is `.gitignore` to avoid committing sensitive data to source control
+1. `make init`; this will install dependencies and make a copy of `pass.json.template` to `pass.json` for you to edit, which is `.gitignore`d to avoid committing sensitive data to source control
 1. Fill in the blanks provided in `pass.json` (see below about JSON)
 1. In Xcode, add any images you'd like to include to `Images.xcassets` (see notes on Images below)
 1. Build the pass
