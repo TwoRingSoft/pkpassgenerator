@@ -1,3 +1,5 @@
 *xcuserdata*
 bin/
 pass.json
+*.pass
+*.pkpass
