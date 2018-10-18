@@ -73,7 +73,6 @@
 		49F25F7A2177C2E7004A4424 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		49F25F842179234C004A4424 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		49F25F8521793387004A4424 /* pass.json.template */ = {isa = PBXFileReference; explicitFileType = text.json; path = pass.json.template; sourceTree = "<group>"; };
-		49FF3C371CD66C31007804C4 /* pass.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pass.json; sourceTree = "<group>"; };
 		49FF3C381CD66E6A007804C4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = signpass.xcodeproj; path = signpass/signpass.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,7 +114,6 @@
 				49FF3C3D1CD66F3F007804C4 /* signpass.xcodeproj */,
 				49FF3C381CD66E6A007804C4 /* Images.xcassets */,
 				49F25F8521793387004A4424 /* pass.json.template */,
-				49FF3C371CD66C31007804C4 /* pass.json */,
 				4993FAC11CD6C3B000DF580C /* create-pass.sh */,
 				4993FAB41CD6752400DF580C /* ImagesSizeChecker */,
 				4993FAB31CD6752400DF580C /* Products */,
