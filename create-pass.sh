@@ -10,7 +10,7 @@ set -x
 
 # get the location of the root of the pass files, from PROJECT_DIR if building in Xcode, or from a path parameter from sh/make
 if [[ -z "${PROJECT_DIR}" ]]; then
-    ROOT_DIR="${1}"
+    ROOT_DIR="${1:-.}"
 else
     ROOT_DIR="${PROJECT_DIR}"
 fi
@@ -23,11 +23,11 @@ else
 fi
 
 # derive a pass name from the JSON
-DOWNLOAD_URL=$(jq '.barcode.message' pass.json | sed s/\"//g)
-PASS_NAME=$(basename -s '.pkpass' $DOWNLOAD_URL)
+DOWNLOAD_URL=$(jq '.barcode.message' "${ROOT_DIR}/pass.json" | sed s/\"//g)
+PASS_NAME=$(basename -s '.pkpass' "${DOWNLOAD_URL}")
 
 # see if there's a custom xcassets catalog, or use the stock one if not
-if [[ -e "${PASS_NAME}.xcassets" ]]; then
+if [[ -e "${ROOT_DIR}/${PASS_NAME}.xcassets" ]]; then
     ASSET_CATALOG="${PASS_NAME}.xcassets"
 else
     ASSET_CATALOG="Images.xcassets"
@@ -46,7 +46,6 @@ fi
 PASS_DIR="${ROOT_DIR}/${PASS_NAME}.pass"
 rm -rf "${PASS_DIR}"
 mkdir "${PASS_DIR}"
-echo "${PASS_DIR}"
 find "${ROOT_DIR}/${ASSET_CATALOG}" -type f -name "*.png" | xargs -I {} cp {} "${PASS_DIR}"
 cp "${ROOT_DIR}/pass.json" "${PASS_DIR}"
 

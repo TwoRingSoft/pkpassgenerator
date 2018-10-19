@@ -11,6 +11,7 @@
 1. Build the pass
     - In Xcode, select the `Generate PKPass` scheme and build (⌘+B)
     - On the command line, `make pass`
+      - You may place point to any directory containing a `pass.json` and `xcassets`: `make ROOT_DIR=<directory> pass`
 
 > The last step builds the `ImageSizeChecker` and `signpass` executables and runs `create-pass.sh`, which checks the sizes of the images you provided, copies them along with `pass.json` into a directory called `$PASS_NAME.pass`, and provides that to `signpass`. 
 

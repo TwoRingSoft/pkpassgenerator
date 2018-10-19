@@ -13,4 +13,7 @@ tools: ImagesSizeChecker signpass
 	mv bin/Build/Products/Release/ImagesSizeChecker bin/Build/Products/Release/signpass bin
 
 pass: tools
-	sh create-pass.sh .
+	sh create-pass.sh $(ROOT_DIR)
+
+clean:
+	rm -rf bin
