@@ -64,6 +64,13 @@ I store mine in AWS S3 (which will give me HTTPS service) with a `Content-Type` 
 
 To test, try generating using the above steps, and upload your `.pkpass` file to your server at the same location you specify in the `pass.json`'s `barcode`->`message` value. Then, with the pass still showing on your Mac, open the Wallet app on an iDevice, select the ⊕ button next to passes, select "Scan Code to Add a Pass", and scan away. 
 
+I use the commands to upload the files to s3:
+
+```sh
+aws s3 cp /path/to/.../$PASS_NAME.pkpass s3://bucket/ --acl public-read --content-type "application/vnd.apple.pkpass"
+aws s3 sync /path/to/.../$PASS_NAME.pass/ s3://bucket/$PASS_NAME.pass/ --acl public-read
+```
+
 ## References
 
 Other helpful references:
